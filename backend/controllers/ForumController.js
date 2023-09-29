@@ -23,10 +23,10 @@ const getForums = async (req, res) => {
 };
 
 const getForum = async (req, res) => {
-  const id = req.params.id;
   try {
+    const id = req.params.id;
     const forum = await Forum.findById(id);
-    res.json({ forum, success: true });
+    res.json({ forum:forum, success: true });
   } catch (error) {
     res.json({ error: error.message, success: false });
   }

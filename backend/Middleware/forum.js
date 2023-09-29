@@ -18,4 +18,4 @@ const veryfiForum = [
     next();
   },
 ];
-module.exports = { veryfiForum };
+module.exports =  veryfiForum ;
