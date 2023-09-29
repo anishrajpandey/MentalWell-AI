@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 export default function SignupUser() {
   const [UserData, setUserData] = useState({});
   async function handleSignup() {
     if (UserData.name && UserData.email && UserData.password) {
       console.log(UserData);
-      let res = await fetch("/api/user/register", {
-        body: JSON.stringify(UserData),
-        method: "POST",
+      let res = await axios.post("http://localhost:5000/api/user/register", {
+        ...UserData,
       });
-      let resjson = await res.json();
-      console.log(resjson);
+      console.log(res.data);
+      localStorage.setItem("UserData", JSON.stringify(res.data));
       //todo
     } else {
       alert("Insufficient details");

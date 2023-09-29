@@ -28,4 +28,4 @@ const therapistSchema = new mongoose.Schema({
   },
 });
 
-module.exports = User = mongoose.model("Therapists", therapistSchema);
+module.exports =Therapist = mongoose.model("Therapists", therapistSchema);

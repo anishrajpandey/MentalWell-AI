@@ -3,9 +3,10 @@ const bcrypt = require("bcryptjs");
 
 // register user controller
 const registerUser = async (req, res) => {
+  console.log(req.body);
   const email = req.body.email;
-  const existingTherapist = await Therapist.findOne({ email });
-  if (existingTherapist) {
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
     return res.json({ error: "Email is already taken", verified: false });
   }
 
@@ -23,7 +24,7 @@ const registerUser = async (req, res) => {
       emotionalState: req.body.emotionalState,
     });
     console.log("user created");
-    const email = req.body.email;
+
     const user = await User.findOne({ email });
 
     res.json({ user, verified: true });
