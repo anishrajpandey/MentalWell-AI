@@ -13,36 +13,37 @@ export default function SignupTherapist() {
       UserData.expertise
     ) {
       console.log(UserData);
-      let res = await axios.post(
-        "http://localhost:5000/api/therapist/registerTherapist",
-        {
-          ...UserData,
-        }
-      );
-      console.log(res.data);
-      if (res.data.verified) {
-        localStorage.setItem("UserData", JSON.stringify(res.data));
-        toast.success(
-          "✅ Successfully logged in" + res.data.name,
-          res.data.name,
+      try {
+        let res = await axios.post(
+          "http://localhost:5000/api/therapist/registerTherapist",
           {
-            position: "bottom-left",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
+            ...UserData,
           }
         );
-        setTimeout(() => {
-          window.location = "/";
-        }, 2000);
-        window.location = "/";
-      } else {
-        localStorage.setItem("UserData", JSON.stringify(res.data));
-        toast.error(res.data.error, {
+        console.log(res.data);
+        if (res.data.verified) {
+          localStorage.setItem("UserData", JSON.stringify(res.data));
+          toast.success(
+            "✅ Successfully logged in" + res.data.name,
+            res.data.name,
+            {
+              position: "bottom-left",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            }
+          );
+          setTimeout(() => {
+            window.location = "/";
+          }, 2000);
+        }
+      } catch (e) {
+        localStorage.setItem("UserData", JSON.stringify({ verified: false }));
+        toast.error(e.message, {
           position: "bottom-left",
           autoClose: 5000,
           hideProgressBar: false,
@@ -274,7 +275,9 @@ export default function SignupTherapist() {
             </div>
             <div className="w-full md:w-1/2 py-10 px-5 md:px-10">
               <div className="text-center mb-10">
-                <h1 className="font-bold text-3xl text-gray-900">REGISTER</h1>
+                <h1 className="font-bold text-3xl text-gray-900">
+                  REGISTER as Therapist
+                </h1>
                 <p>Enter your information to register</p>
               </div>
               <div>
