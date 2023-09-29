@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const LoginUser = () => {
   const [UserData, setUserData] = useState({});
@@ -144,7 +144,7 @@ const LoginUser = () => {
           <div className="mt-8">
             Need an account?{" "}
             <button
-              onClick={() => navigate("/signup")}
+              onClick={() => navigate("/signupuser")}
               className="text-blue-500 hover:text-blue-700 font-semibold"
             >
               Create an account
