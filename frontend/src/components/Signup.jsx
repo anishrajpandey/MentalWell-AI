@@ -3,6 +3,11 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
+import LoginTherapist from "../screens/LoginTherapist";
+import LoginUser from "../screens/LoginUser";
+
+import { Link } from "react-router-dom";
+
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -33,7 +38,9 @@ export default function BasicMenu() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Mental Specialist</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link to="/">Mental Specialist</Link>
+        </MenuItem>
         <MenuItem onClick={handleClose}>User</MenuItem>
       </Menu>
     </div>

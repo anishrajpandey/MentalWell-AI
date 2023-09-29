@@ -7,6 +7,7 @@ const registerUser = async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
   try {
+    console.log("user creating");
     await User.create({
       name: req.body.name,
       email: req.body.email,
@@ -15,8 +16,11 @@ const registerUser = async (req, res) => {
       userType: req.body.userType,
       emotionalState: req.body.emotionalState,
     });
+    console.log("user created");
+    const email = req.body.email;
+    const user = await User.findOne({ email });
 
-    res.json({ user: req.body, verified: true });
+    res.json({ user, verified: true });
   } catch (error) {
     res.json({ error: error.message, verified: false });
   }
@@ -48,8 +52,6 @@ const loginUser = async (req, res) => {
         .json({ error: "Invalid email or password", verified: false });
     }
 
- 
-
     // 5. Send the response back to the client
     res.json({ user, verified: true });
   } catch (error) {
@@ -57,4 +59,14 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser };
+const getUser = async (req, res) => {
+    //get all users
+    try {
+        const users = await User.find();
+        res.json({ users });
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+};
+
+module.exports = { registerUser, loginUser, getUser };
