@@ -1,28 +1,69 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const LoginTherapist = () => {
   const [UserData, setUserData] = useState({});
 
   const navigate = useNavigate();
   async function handleLogin() {
-    if (UserData.email && UserData.password) {
-      console.log(UserData);
-      let res = await fetch(
-        "http:://localhost:5000/api/therapist/loginTherapist",
-        {
-          body: JSON.stringify(UserData),
-          method: "POST",
+    console.log(UserData);
+    try {
+      if (UserData.email && UserData.password) {
+        let res = await axios.post(
+          "http://localhost:5000/api/therapist/loginTherapist",
+          {
+            ...UserData,
+          }
+        );
+        console.log(res.data);
+        if (res.data.verified) {
+          localStorage.setItem("UserData", JSON.stringify(res.data));
+          toast.success("✅ Successfully logged in ", {
+            position: "bottom-left",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          setTimeout(() => {
+            window.location = "/";
+          }, 2000);
+        } else {
+          localStorage.setItem("UserData", JSON.stringify(res.data));
+          toast.error(res.data.error, {
+            position: "bottom-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
-      );
-      let resjson = await res.json();
-      console.log(resjson);
-      //todo
-    } else {
-      alert("Insufficient details");
+
+        //todo
+      } else {
+        alert("Insufficient details");
+      }
+    } catch (e) {
+      toast.error(e.message, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   }
   return (
@@ -44,7 +85,7 @@ const LoginTherapist = () => {
             Welcome, Therapist Log in to your account
           </h1>
 
-          <form className="mt-6" action="#" method="POST">
+          <div className="mt-6">
             <div>
               <label className="block text-gray-700">Email Address</label>
               <input
@@ -95,14 +136,13 @@ const LoginTherapist = () => {
             </div>
 
             <button
-              type="submit"
               className="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
               px-4 py-3 mt-6"
               onClick={handleLogin}
             >
               Log In
             </button>
-          </form>
+          </div>
 
           <hr className="my-6 border-gray-300 w-full" />
 
@@ -156,6 +196,18 @@ const LoginTherapist = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </section>
   );
 };

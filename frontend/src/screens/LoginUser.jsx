@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 // import { Link } from "react-router-dom";
 
@@ -10,27 +11,60 @@ const LoginUser = () => {
 
   const navigate = useNavigate();
   async function handleLogin() {
-    if (UserData.email && UserData.password) {
-      async function handleLogin() {
-        if (UserData.name && UserData.email && UserData.password) {
-          console.log(UserData);
-          let res = await axios.post(
-            "http://localhost:5000/api/user/register",
-            {
-              ...UserData,
-            }
-          );
-          console.log(res.data);
+    console.log(UserData);
+    try {
+      if (UserData.email && UserData.password) {
+        let res = await axios.post("http://localhost:5000/api/user/loginUser", {
+          ...UserData,
+        });
+        console.log(res.data);
+        if (res.data.verified) {
           localStorage.setItem("UserData", JSON.stringify(res.data));
-          //todo
+          toast.success("✅ Successfully logged in ", {
+            position: "bottom-left",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          setTimeout(() => {
+            window.location = "/";
+          }, 2000);
         } else {
-          alert("Insufficient details");
+          localStorage.setItem("UserData", JSON.stringify(res.data));
+          toast.error(res.data.error, {
+            position: "bottom-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
+
+        //todo
+      } else {
+        alert("Insufficient details");
       }
-    } else {
-      alert("Insufficient details");
+    } catch (e) {
+      toast.error(e.message, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   }
+
   return (
     <section className="flex flex-col md:flex-row h-screen items-center">
       <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
@@ -50,7 +84,7 @@ const LoginUser = () => {
             Welcome, User Log in to your account
           </h1>
 
-          <form className="mt-6" action="#" method="POST">
+          <div className="mt-6" action="#" method="POST">
             <div>
               <label className="block text-gray-700">Email Address</label>
               <input
@@ -101,14 +135,13 @@ const LoginUser = () => {
             </div>
 
             <button
-              type="submit"
               className="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
               px-4 py-3 mt-6"
               onClick={handleLogin}
             >
               Log In
             </button>
-          </form>
+          </div>
 
           <hr className="my-6 border-gray-300 w-full" />
 
@@ -162,8 +195,19 @@ const LoginUser = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </section>
   );
 };
-
 export default LoginUser;

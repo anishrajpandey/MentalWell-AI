@@ -31,7 +31,6 @@ export default function SignupUser() {
         setTimeout(() => {
           window.location = "/";
         }, 2000);
-        window.location = "/";
       } else {
         localStorage.setItem("UserData", JSON.stringify(res.data));
         toast.error(res.data.error, {
