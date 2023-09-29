@@ -33,8 +33,14 @@ const AddedHome = () => {
               </p>
             </div>
           </div>
-          <div className="rightSide flex-1 md:pl-16 flex justify-start ">
-            {/* <Svg1 /> */} //todo
+          <div className="rightSide flex-1 md:pl-16 flex justify-start w-64 h-56">
+            <img
+              width={400}
+              height={500}
+              src={"/assets/1.svg"}
+              alt="dfdsfddsfds"
+              className="w-64 h-64"
+            />
           </div>
         </div>
       </>

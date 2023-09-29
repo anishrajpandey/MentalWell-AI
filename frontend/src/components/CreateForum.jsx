@@ -54,7 +54,7 @@ const CreateForum = () => {
   }
 
   return (
-    <main className="w-9/12 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 scale-75 mx-auto rounded-lg bg-secondaryBlue min-h-fit -m-8 p-8 flex justify-center shadow-2xl">
+    <main className="w-screen md:w-9/12 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 scale-75 mx-auto rounded-lg bg-secondaryBlue min-h-fit -m-8 p-8 flex justify-center shadow-2xl">
       <form action="#" className="flex w-11/12 flex-col ">
         <h1 className="text-5xl font-bold text-white underline w-full text-center">
           Start a forum !
