@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 
-export default function Signup() {
+export default function SignupUser() {
   const [UserData, setUserData] = useState({});
   async function handleSignup() {
     if (UserData.name && UserData.email && UserData.password) {
-      let res = await fetch("localhost:5000/api/user/register");
+      let res = await fetch("localhost:5000/api/user/register", {
+        body: JSON.stringify(UserData),
+        method: "POST",
+      });
+      let resjson = await res.json();
+      console.log(resjson);
       //todo
     } else {
       alert("Insufficient details");
