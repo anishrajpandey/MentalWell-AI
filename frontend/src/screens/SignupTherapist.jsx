@@ -345,6 +345,30 @@ export default function SignupTherapist() {
                     </div>
                   </div>
                 </div>
+                <div className="w-full px-3 mb-5">
+                  <label htmlFor="" className="text-xs font-semibold px-1">
+                    Gender
+                  </label>
+                  <div className="flex">
+                    <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                      <i className="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                    </div>
+                    <select
+                      className="w-full h-8"
+                      onChange={(e) => {
+                        setUserData((prev) => ({
+                          ...prev,
+                          gender: e.target.value,
+                        }));
+                        console.log(e.target.value);
+                      }}
+                    >
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="others">Other</option>
+                    </select>
+                  </div>
+                </div>
                 <div className="flex -mx-3">
                   <div className="w-full px-3 mb-5">
                     <label htmlFor="" className="text-xs font-semibold px-1">
