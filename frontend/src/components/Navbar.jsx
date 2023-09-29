@@ -16,24 +16,24 @@ const Navbar = () => {
   }
   return (
     <div>
-      <nav class="bg-white border-gray-200">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <Link to="/" class="flex items-center ml-0">
-            <img src="/logo.png" class="h-16 mr-3" alt="Flowbite Logo" />
-            <span class="self-center text-2xl font-semibold whitespace-nowrap"></span>
+      <nav className="bg-white border-gray-200">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          <Link to="/" className="flex items-center ml-0">
+            <img src="/logo.png" className="h-16 mr-3" alt="Flowbite Logo" />
+            <span className="self-center text-2xl font-semibold whitespace-nowrap"></span>
           </Link>
           {!checkAuthentication() ? (
-            <div class="flex md:order-2">
+            <div className="flex md:order-2">
               <button
                 type="button"
-                class="text-black bg-white-700  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-3"
+                className="text-black bg-white-700  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-3"
               >
                 <Login />
               </button>
 
               <button
                 type="button"
-                class="text-white bg-secondaryBlue focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 "
+                className="text-white bg-secondaryBlue focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 "
               >
                 <Signup />
               </button>
@@ -41,13 +41,13 @@ const Navbar = () => {
               <button
                 data-collapse-toggle="navbar-cta"
                 type="button"
-                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200-400-gray-700-gray-600"
+                className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200-400-gray-700-gray-600"
                 aria-controls="navbar-cta"
                 aria-expanded="false"
               >
-                <span class="sr-only">Open main menu</span>
+                <span className="sr-only">Open main menu</span>
                 <svg
-                  class="w-5 h-5"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -72,12 +72,12 @@ const Navbar = () => {
           )}
 
           <div
-            class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-cta"
           >
-            <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-white  ">
+            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-white  ">
               <Link
-                class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                 aria-current="page"
                 to={"/"}
               >
@@ -85,15 +85,15 @@ const Navbar = () => {
               </Link>
               <Link
                 to="/forum"
-                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500-gray-700-white md:dark:hover:bg-transparent-700"
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500-gray-700-white md:dark:hover:bg-transparent-700"
               >
                 Forum
               </Link>
               {JSON.parse(localStorage.getItem("UserData"))?.therapist
                 ?.userType === "therapist" && (
                 <Link
-                  to="/signuptherapist"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500-gray-700-white md:dark:hover:bg-transparent-700"
+                  to="/getUsers"
+                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500-gray-700-white md:dark:hover:bg-transparent-700"
                 >
                   Connect with Patients
                 </Link>
@@ -102,7 +102,7 @@ const Navbar = () => {
                 "user" && (
                 <Link
                   to="/findtherapist"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500-gray-700-white md:dark:hover:bg-transparent-700"
+                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500-gray-700-white md:dark:hover:bg-transparent-700"
                 >
                   Find Therapists
                 </Link>

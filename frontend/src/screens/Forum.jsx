@@ -1,15 +1,27 @@
+import { Button } from "@mui/material";
 import CreateForum from "../components/CreateForum";
+import { useState } from "react";
 
-export default function forum() {
+export default function Forum() {
+  const [ShowCreateForum, setShowCreateForum] = useState(false);
   return (
     <main>
-      {/* <CreateForum /> */}
+      <button
+        variant="contained"
+        className="bg-primaryBlue w-16 h-16  grid items-center fixed bottom-6 text-4xl right-16 rounded-full hover:bg-secondaryBlue "
+        onClick={() => {
+          setShowCreateForum(!ShowCreateForum);
+        }}
+      >
+        +
+      </button>
+      {ShowCreateForum && <CreateForum />}
       <div className="bg-blue-50 rounded-xl py-6 flex items-center flex-col w-fit max-w-screen mx-auto">
         <h1 className="text-5xl font-bold text-black m-4  w-full text-center">
           Your Forums
         </h1>
         <ol type="1">
-          <li className="h-20 flex items-center shadow-black shadow-red-900 ">
+          <li className="h-20 flex items-center shadow-black ">
             {" "}
             <a
               href="#"
