@@ -1,8 +1,13 @@
 const mongoose = require("mongoose");
+const fakeName = require("../fakename/fakename");
 const forumSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+  },
+  fakeName:{
+    type: String,
+    default: fakeName,
   },
   content: {
     type: String,

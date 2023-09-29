@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 const { MALE, FEMALE, OTHERS } = require("../constants/gender");
 
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -11,6 +12,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+
   password: {
     type: String,
     required: true,
