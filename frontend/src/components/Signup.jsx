@@ -3,9 +3,6 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-import LoginTherapist from "../screens/LoginTherapist";
-import LoginUser from "../screens/LoginUser";
-
 import { Link } from "react-router-dom";
 
 export default function BasicMenu() {
@@ -39,9 +36,11 @@ export default function BasicMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link to="/">Mental Specialist</Link>
+          <Link to="/signuptherapist">As Therapist</Link>
         </MenuItem>
-        <MenuItem onClick={handleClose}>User</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link to="/signupuser">As User</Link>
+        </MenuItem>
       </Menu>
     </div>
   );
