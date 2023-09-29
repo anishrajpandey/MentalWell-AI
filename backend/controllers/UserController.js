@@ -3,6 +3,13 @@ const bcrypt = require("bcryptjs");
 
 // register user controller
 const registerUser = async (req, res) => {
+
+  const email = req.body.email;
+  const existingTherapist = await Therapist.findOne({ email });
+  if (existingTherapist) {
+    return res.json({ error: 'Email is already taken', verified: false });
+  }
+
   //bcrypt password
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);

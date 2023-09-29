@@ -2,28 +2,33 @@ const Therapist = require("../model/Therapist");
 const bcrypt = require("bcryptjs");
 
 const registerTherapist = async (req, res) => {
-  //bcrypt password
+  // Check if the email is already taken
+  const email = req.body.email;
+  const existingTherapist = await Therapist.findOne({ email });
+  if (existingTherapist) {
+    return res.json({ error: 'Email is already taken', verified: false });
+  }
+
+  // Bcrypt password
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
   try {
-    console.log(" creating");
+    console.log("creating");
     await Therapist.create({
       name: req.body.name,
       email: req.body.email,
       password: hashedPassword,
       age: req.body.age,
-
       expertise: req.body.expertise,
     });
     console.log("created");
-    const email = req.body.email;
     const therapist = await Therapist.findOne({ email });
-
     res.json({ therapist, verified: true });
   } catch (error) {
     res.json({ error: error.message, verified: false });
   }
 };
+
 
 const loginTherapist = async (req, res) => {
   try {
