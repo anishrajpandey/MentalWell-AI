@@ -4,6 +4,7 @@ export default function SignupUser() {
   const [UserData, setUserData] = useState({});
   async function handleSignup() {
     if (UserData.name && UserData.email && UserData.password) {
+      console.log(UserData);
       let res = await fetch("http://localhost:5000/api/user/register", {
         body: JSON.stringify(UserData),
         method: "POST",
@@ -332,14 +333,6 @@ export default function SignupUser() {
                       className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
                     >
                       Register As User
-                    </button>
-                  </div>
-                  <div className="w-full px-3 mb-5">
-                    <button
-                      onClick={handleSignup}
-                      className="block w-full max-w-xs mx-auto bg-gray-500 hover:bg-gray-700  text-white rounded-lg px-3 py-3 font-semibold"
-                    >
-                      Register As Specialist
                     </button>
                   </div>
                 </div>
