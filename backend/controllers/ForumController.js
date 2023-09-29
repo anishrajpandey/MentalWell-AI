@@ -24,8 +24,9 @@ const getForums = async (req, res) => {
 
 const getForum = async (req, res) => {
   try {
-    const id = req.params.id;
-    const forum = await Forum.findById(id);
+    const _id = req.params.id;
+    console.log(_id);
+    const forum = await Forum.findById(_id);
     res.json({ forum:forum, success: true });
   } catch (error) {
     res.json({ error: error.message, success: false });

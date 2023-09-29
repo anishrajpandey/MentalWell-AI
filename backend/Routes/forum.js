@@ -11,9 +11,9 @@ const {
 const veryfiForum = require("../Middleware/forum");
 
 Router.post("/addForum", veryfiForum, addForum);
-Router.get("/forums", getForums);
-Router.get("/forum/:id", getForum);
-Router.put("/forum/:id", updateForum);
-Router.delete("/forum/:id", deleteForum);
+Router.get("/getForums", getForums);
+Router.get("/getForum/:id", getForum);
+Router.put("/updateForum/:id", updateForum);
+Router.delete("/deleteForum/:id", deleteForum);
 
 module.exports = Router;

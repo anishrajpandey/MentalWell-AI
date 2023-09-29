@@ -6,10 +6,11 @@ const therapistRouter = require("./Routes/therapist");
 const forumRouter = require("./Routes/forum");
 const connectDB = require("./mongoDB/config");
 const corsOptions = {
-    origin: 'http://localhost:5000', // replace with your application's origin
+    origin: 'http://localhost:3000', // replace with your application's origin
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
-    credentials: true
+    credentials: true,
+    optionsSuccessStatus: 200
   };
   
   // Use the cors middleware with options
