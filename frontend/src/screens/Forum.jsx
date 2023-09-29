@@ -5,8 +5,8 @@ import axios from "axios";
 import getUserData from "../utils/getUserData";
 
 export default function Forum() {
-  const [MyForums, setMyForums] = useState({});
-  const [OtherForums, setOtherForums] = useState({});
+  const [MyForums, setMyForums] = useState([]);
+  const [OtherForums, setOtherForums] = useState([]);
   useEffect(() => {
     getForums();
   }, []);
@@ -14,10 +14,16 @@ export default function Forum() {
     try {
       let res = await axios.get("http://localhost:5000/api/forum/getForums");
       let AllForums = res.data.forums;
+      console.log(
+        AllForums.filter(({ userID }) => userID === getUserData()._id)
+      );
       setMyForums(
         AllForums.filter(({ userID }) => userID === getUserData()._id)
       );
       setOtherForums(
+        AllForums.filter(({ userID }) => userID !== getUserData()._id)
+      );
+      console.log(
         AllForums.filter(({ userID }) => userID !== getUserData()._id)
       );
     } catch (e) {
@@ -42,146 +48,35 @@ export default function Forum() {
           Your Forums
         </h1>
         <ol type="1">
-          {/* {MyForums.map(() => {
-            
-          })} */}
-          <li className="h-20 flex items-center shadow-black ">
-            {" "}
-            <a
-              href="#"
-              className="text-xl px-12 py-2 inline-block text-purple-600 "
-            >
-              forum content goes here Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. F
-            </a>
-          </li>
-          <hr />
-          <hr />
-          <li>
-            {" "}
-            <a
-              href="#"
-              className="text-xl px-12 py-2 inline-block text-purple-600 "
-            >
-              forum content goes here Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. F
-            </a>
-          </li>{" "}
-          <hr />
-          <hr />
-          <li>
-            {" "}
-            <a
-              href="#"
-              className="text-xl px-12 py-2 inline-block text-purple-600 "
-            >
-              forum content goes here Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. F
-            </a>
-          </li>{" "}
-          <hr />
-          <hr />
-          <li>
-            {" "}
-            <a
-              href="#"
-              className="text-xl px-12 py-2 inline-block text-purple-600 "
-            >
-              forum content goes here Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. F
-            </a>
-          </li>
+          {MyForums.map(({ title }) => (
+            <li className="h-20 flex items-center shadow-lg ">
+              {" "}
+              <a
+                href="#"
+                className="text-xl px-12 py-4 inline-block text-purple-600 "
+              >
+                {title}
+              </a>
+            </li>
+          ))}
         </ol>
       </div>
       <div>
         <h1 className="text-4xl font-bold text-black m-4  w-full text-center">
           Other forums{" "}
         </h1>
-        <ol type="1" className="flex justify-center">
-          <li>
-            {" "}
-            <a
-              href="#"
-              className="text-xl px-12 py-2 inline-block text-purple-600 "
-            >
-              forum content goes here Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. F
-            </a>
-          </li>
-          <hr />
-          <hr />
-          <li>
-            {" "}
-            <a
-              href="#"
-              className="text-xl px-12 py-2 inline-block text-purple-600 "
-            >
-              forum content goes here Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. F
-            </a>
-          </li>
-          <hr />
-          <hr />
-          <li>
-            {" "}
-            <a
-              href="#"
-              className="text-xl px-12 py-2 inline-block text-purple-600 "
-            >
-              forum content goes here Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. F
-            </a>
-          </li>
-          <hr />
-          <hr />
-          <li>
-            {" "}
-            <a
-              href="#"
-              className="text-xl px-12 py-2 inline-block text-purple-600 "
-            >
-              forum content goes here Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. F
-            </a>
-          </li>
-          <hr />
-          <hr />
-          <li>
-            {" "}
-            <a
-              href="#"
-              className="text-xl px-12 py-2 inline-block text-purple-600 "
-            >
-              forum content goes here Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. F
-            </a>
-          </li>
-          <hr />
-          <hr />
-          <li>
-            {" "}
-            <a
-              href="#"
-              className="text-xl px-12 py-2 inline-block text-purple-600 "
-            >
-              forum content goes here Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. F
-            </a>
-          </li>
-          <hr />
-          <hr />
-          <li>
-            {" "}
-            <a
-              href="#"
-              className="text-xl px-12 py-2 inline-block text-purple-600 "
-            >
-              forum content goes here Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. F
-            </a>
-          </li>
-          <hr />
-          <hr />
+        <ol type="1" className="flex flex-col justify-center">
+          {OtherForums.map(({ title, fakeName }) => (
+            <li className="h-20 flex items-center shadow-lg">
+              {" "}
+              <a
+                href="#"
+                className="text-xl px-12 py-2 inline-block text-purple-600 "
+              >
+                {title}
+              </a>
+            </li>
+          ))}
         </ol>
       </div>
     </main>
