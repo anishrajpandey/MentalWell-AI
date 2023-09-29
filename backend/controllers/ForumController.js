@@ -15,7 +15,7 @@ const addForum = async (req, res) => {
 
 const getForums = async (req, res) => {
   try {
-    const forums = await Forum.find();
+    const forums = await Forum.find().sort({ created_at: -1 });
     res.json({ forums, success: true });
   } catch (error) {
     res.json({ error: error.message, success: false });
@@ -27,7 +27,7 @@ const getForum = async (req, res) => {
     const _id = req.params.id;
     console.log(_id);
     const forum = await Forum.findById(_id);
-    res.json({ forum:forum, success: true });
+    res.json({ forum: forum, success: true });
   } catch (error) {
     res.json({ error: error.message, success: false });
   }

@@ -8,10 +8,14 @@ const forumSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  created_at: {
+    type: Date,
+    default: Date.now,
+  },
   userID: {
     type: mongoose.Schema.ObjectId,
     required: true,
   },
 });
 
-module.exports=Forum = mongoose.model("Forums", forumSchema);
+module.exports = Forum = mongoose.model("Forums", forumSchema);
