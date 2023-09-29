@@ -4,7 +4,7 @@ export default function SignupUser() {
   const [UserData, setUserData] = useState({});
   async function handleSignup() {
     if (UserData.name && UserData.email && UserData.password) {
-      let res = await fetch("localhost:5000/api/user/register", {
+      let res = await fetch("http://localhost:5000/api/user/register", {
         body: JSON.stringify(UserData),
         method: "POST",
       });
@@ -15,14 +15,7 @@ export default function SignupUser() {
       alert("Insufficient details");
     }
   }
-  async function handleSignupSpecial() {
-    if (UserData.name && UserData.email && UserData.password) {
-      let res = await fetch("localhost:5000/api/user/register");
-      //todo
-    } else {
-      alert("Insufficient details");
-    }
-  }
+
   return (
     <div>
       <div className="min-w-screen min-h-screen  flex items-center justify-center px-5 py-5">
@@ -343,7 +336,7 @@ export default function SignupUser() {
                   </div>
                   <div className="w-full px-3 mb-5">
                     <button
-                      onClick={handleSignupSpecial}
+                      onClick={handleSignup}
                       className="block w-full max-w-xs mx-auto bg-gray-500 hover:bg-gray-700  text-white rounded-lg px-3 py-3 font-semibold"
                     >
                       Register As Specialist
