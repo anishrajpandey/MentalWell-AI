@@ -5,7 +5,7 @@ export default function SignupUser() {
   async function handleSignup() {
     if (UserData.name && UserData.email && UserData.password) {
       console.log(UserData);
-      let res = await fetch("http://localhost:5000/api/user/register", {
+      let res = await fetch("/api/user/register", {
         body: JSON.stringify(UserData),
         method: "POST",
       });
