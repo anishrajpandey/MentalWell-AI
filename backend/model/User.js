@@ -1,5 +1,7 @@
 // create user model
 const mongoose = require("mongoose");
+const { MALE, FEMALE, OTHERS } = require("../constants/gender");
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -17,6 +19,11 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  gender: {
+    type: String,
+    enum: [MALE, FEMALE, OTHERS],
+    required: true,
+  },
   emotionalState: {
     type: Number,
     required: false,
@@ -28,4 +35,4 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-module.exports =User = mongoose.model("Users", userSchema);
+module.exports = User = mongoose.model("Users", userSchema);
