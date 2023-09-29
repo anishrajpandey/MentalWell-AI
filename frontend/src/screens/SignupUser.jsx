@@ -29,7 +29,7 @@ export default function SignupUser() {
           }
         );
         setTimeout(() => {
-          window.location = "/";
+          // window.location = "/";
         }, 2000);
       } else {
         localStorage.setItem("UserData", JSON.stringify(res.data));
