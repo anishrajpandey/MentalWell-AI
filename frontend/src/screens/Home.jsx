@@ -1,4 +1,5 @@
 import React from "react";
+import AddedHome from "../components/AddedHome";
 
 const Home = () => {
   return (
@@ -58,6 +59,7 @@ const Home = () => {
           />
         </div>
       </div>
+      <AddedHome />
     </main>
   );
   // <Container>

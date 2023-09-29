@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import getUserData from "../utils/getUserData";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const CreateForum = () => {
   const [ForumData, setForumData] = useState({});
@@ -9,6 +11,47 @@ const CreateForum = () => {
       userID: getUserData()._id,
     }));
   }, []);
+  async function addForum() {
+    try {
+      let res = await axios.post("http://localhost:5000/api/forum/addForum", {
+        ...ForumData,
+      });
+      if (res.data.success) {
+        toast.success("added", {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.error("not added", {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    } catch (e) {
+      toast.error(e.message, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }
 
   return (
     <main className="w-9/12 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 scale-75 mx-auto rounded-lg bg-secondaryBlue min-h-fit -m-8 p-8 flex justify-center shadow-2xl">
@@ -48,19 +91,26 @@ const CreateForum = () => {
           />
         </div>
         <button
+          onClick={addForum}
           type="submit"
           className="w-full bg-tertiary text-center font-bold h-12 rounded-lg hover:bg-transparent hover:outline my-4"
         >
           Add a forum{" "}
         </button>
       </form>
-      <button
-        onClick={() => {
-          console.log(ForumData);
-        }}
-      >
-        test
-      </button>
+
+      <ToastContainer
+        position="bottom-left"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </main>
   );
 };
