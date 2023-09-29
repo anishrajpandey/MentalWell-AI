@@ -8,15 +8,15 @@ const Navbar = () => {
     <div>
       <nav class="bg-white border-gray-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="https://flowbite.com/" class="flex items-center">
+          <Link to="/" class="flex items-center">
             <img src="/logo.png" class="h-16 mr-3" alt="Flowbite Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap"></span>
-          </a>
+          </Link>
           <div class="flex md:order-2">
             <Link to="/login">
               <button
                 type="button"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-3 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                class="text-black bg-white-700 hover:bg-white-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-3 dark:bg-white-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Login
               </button>
@@ -67,28 +67,20 @@ const Navbar = () => {
               >
                 Home
               </Link>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500-gray-700-white md:dark:hover:bg-transparent-700"
-                ></a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500-gray-700-white md:dark:hover:bg-transparent-700"
-                >
-                  Forum
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500-gray-700-white md:dark:hover:bg-transparent-700"
-                >
-                  Find Therapist
-                </a>
-              </li>
+
+              <Link
+                to="/forum"
+                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500-gray-700-white md:dark:hover:bg-transparent-700"
+              >
+                Forum
+              </Link>
+
+              <Link
+                to="/findtherapist"
+                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500-gray-700-white md:dark:hover:bg-transparent-700"
+              >
+                Find Therapist
+              </Link>
             </ul>
           </div>
         </div>

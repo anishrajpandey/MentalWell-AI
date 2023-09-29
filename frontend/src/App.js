@@ -5,6 +5,8 @@ import Signup from "./screens/Signup";
 import Home from "./screens/Home";
 import Navbar from "./components/Navbar";
 import Login from "./screens/Login";
+import Forum from "./screens/Forum.jsx";
+import FindTherapist from "./screens/FindTherapist.jsx";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route exact path="signup" element={<Signup />} />
         <Route exact path="login" element={<Login />} />
+        <Route exact path="forum" element={<Forum />} />
+        <Route exact path="findtherapist" element={<FindTherapist />} />
       </Routes>
     </div>
   );
