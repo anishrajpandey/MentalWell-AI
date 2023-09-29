@@ -10,7 +10,7 @@ const LoginUser = () => {
   const navigate = useNavigate();
   async function handleLogin() {
     if (UserData.email && UserData.password) {
-      let res = await fetch("localhost:5000/api/user/loginUser", {
+      let res = await fetch("/api/user/loginUser", {
         body: JSON.stringify(UserData),
         method: "POST",
       });
