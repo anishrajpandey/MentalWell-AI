@@ -8,10 +8,8 @@ export default function SignupUser() {
       let res = await axios.post("http://localhost:5000/api/user/register", {
         ...UserData,
       });
-      let resjson = await res.json();
-      console.log(resjson);
-      console.log(res);
-      // console.log(resjson);
+      console.log(res.data);
+      localStorage.setItem("UserData", JSON.stringify(res.data));
       //todo
     } else {
       alert("Insufficient details");
