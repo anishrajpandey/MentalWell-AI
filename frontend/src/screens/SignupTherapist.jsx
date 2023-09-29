@@ -1,5 +1,8 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
 export default function SignupTherapist() {
   const [UserData, setUserData] = useState({});
   async function handleSignup() {
@@ -10,16 +13,46 @@ export default function SignupTherapist() {
       UserData.expertise
     ) {
       console.log(UserData);
-      let res = await fetch(
+      let res = await axios.post(
         "http://localhost:5000/api/therapist/registerTherapist",
         {
-          method: "POST",
-          body: JSON.stringify(UserData),
+          ...UserData,
         }
       );
-      let resjson = await res.json();
-      console.log(resjson);
-
+      console.log(res.data);
+      if (res.data.verified) {
+        localStorage.setItem("UserData", JSON.stringify(res.data));
+        toast.success(
+          "✅ Successfully logged in" + res.data.name,
+          res.data.name,
+          {
+            position: "bottom-left",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
+        setTimeout(() => {
+          window.location = "/";
+        }, 2000);
+        window.location = "/";
+      } else {
+        localStorage.setItem("UserData", JSON.stringify(res.data));
+        toast.error(res.data.error, {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
       //todo
     } else {
       alert("Insufficient details");
@@ -315,7 +348,7 @@ export default function SignupTherapist() {
                 <div className="flex -mx-3">
                   <div className="w-full px-3 mb-5">
                     <label htmlFor="" className="text-xs font-semibold px-1">
-                      Email
+                      Area of Expertise
                     </label>
                     <div className="flex">
                       <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
@@ -324,7 +357,7 @@ export default function SignupTherapist() {
                       <input
                         type="text"
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                        placeholder="johnsmith@example.com"
+                        placeholder="Neuroscience"
                         onChange={(e) => {
                           setUserData((prev) => ({
                             ...prev,
@@ -374,6 +407,18 @@ export default function SignupTherapist() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

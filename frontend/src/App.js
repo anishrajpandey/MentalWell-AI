@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./screens/Home";
@@ -10,9 +10,13 @@ import FindTherapist from "./screens/FindTherapist.jsx";
 import SignupUser from "./screens/SignupUser";
 import SignupTherapist from "./screens/SignupTherapist";
 import LoginTherapist from "./screens/LoginTherapist";
-import forum from "./screens/Forum.jsx";
+import checkAuthentication from "./utils/checkAuthentication";
+import FindPatients from "./screens/FindPatients";
 
 function App() {
+  useEffect(() => {
+    console.log(checkAuthentication());
+  });
   return (
     <div>
       <Navbar />
@@ -25,6 +29,7 @@ function App() {
         <Route exact path="signuptherapist" element={<SignupTherapist />} />
         <Route exact path="findtherapist" element={<FindTherapist />} />
         <Route exact path="forum" element={<Forum />} />
+        <Route exact path="getUsers" element={<FindPatients />} />
       </Routes>
     </div>
   );

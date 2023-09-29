@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -10,13 +11,22 @@ const LoginUser = () => {
   const navigate = useNavigate();
   async function handleLogin() {
     if (UserData.email && UserData.password) {
-      let res = await fetch("/api/user/loginUser", {
-        body: JSON.stringify(UserData),
-        method: "POST",
-      });
-      let resjson = await res.json();
-      console.log(resjson);
-      //todo
+      async function handleLogin() {
+        if (UserData.name && UserData.email && UserData.password) {
+          console.log(UserData);
+          let res = await axios.post(
+            "http://localhost:5000/api/user/register",
+            {
+              ...UserData,
+            }
+          );
+          console.log(res.data);
+          localStorage.setItem("UserData", JSON.stringify(res.data));
+          //todo
+        } else {
+          alert("Insufficient details");
+        }
+      }
     } else {
       alert("Insufficient details");
     }
