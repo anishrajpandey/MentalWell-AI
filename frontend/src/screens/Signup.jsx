@@ -4,7 +4,7 @@ export default function Signup() {
   const [UserData, setUserData] = useState({});
   async function handleSignup() {
     if (UserData.name && UserData.email && UserData.password) {
-      let res = await fetch("localhost:5000/api/user/register");
+      let res = await fetch("http://localhost:5000/api/user/register");
       //todo
     } else {
       alert("Insufficient details");
