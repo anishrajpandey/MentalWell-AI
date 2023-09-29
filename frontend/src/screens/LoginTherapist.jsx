@@ -148,7 +148,7 @@ const LoginTherapist = () => {
           <div className="mt-8">
             Need an account?{" "}
             <button
-              onClick={() => navigate("/signup")}
+              onClick={() => navigate("/signuptherapist")}
               className="text-blue-500 hover:text-blue-700 font-semibold"
             >
               Create an account

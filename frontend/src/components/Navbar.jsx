@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 
 import Signup from "../components/Signup";
 
-import LoginTherapist from "../screens/LoginTherapist";
-import LoginUser from "../screens/LoginUser";
+import Login from "../components/Login";
 
 const Navbar = () => {
   return (
@@ -18,23 +17,20 @@ const Navbar = () => {
             <span class="self-center text-2xl font-semibold whitespace-nowrap"></span>
           </Link>
           <div class="flex md:order-2">
-            <Link to="/login">
-              <button
-                type="button"
-                class="text-black bg-white-700 hover:bg-white-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-3 dark:bg-white-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Login
-              </button>
-            </Link>
+            <button
+              type="button"
+              class="text-black bg-white-700  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-3"
+            >
+              <Login />
+            </button>
 
-            <Link>
-              <button
-                type="button"
-                class="text-white bg-secondaryBlue hover:bg-secondaryBlue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 "
-              >
-                <Signup />
-              </button>
-            </Link>
+            <button
+              type="button"
+              class="text-white bg-secondaryBlue focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 "
+            >
+              <Signup />
+            </button>
+
             <button
               data-collapse-toggle="navbar-cta"
               type="button"
@@ -81,7 +77,7 @@ const Navbar = () => {
               </Link>
 
               <Link
-                to="/findtherapist"
+                to="/signuptherapist"
                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500-gray-700-white md:dark:hover:bg-transparent-700"
               >
                 Find Therapist
