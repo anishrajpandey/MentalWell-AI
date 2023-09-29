@@ -1,32 +1,31 @@
-const User = require("../model/User");
+const Therapist = require("../model/Therapist");
 const bcrypt = require("bcryptjs");
 
-// register user controller
-const registerUser = async (req, res) => {
+const registerTherapist = async (req, res) => {
   //bcrypt password
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
   try {
-    console.log("user creating");
-    await User.create({
+    console.log(" creating");
+    await Therapist.create({
       name: req.body.name,
       email: req.body.email,
       password: hashedPassword,
       age: req.body.age,
-      userType: req.body.userType,
-      emotionalState: req.body.emotionalState,
-    });
-    console.log("user created");
-    const email = req.body.email;
-    const user = await User.findOne({ email });
 
-    res.json({ user, verified: true });
+      expertise: req.body.expertise,
+    });
+    console.log("created");
+    const email = req.body.email;
+    const therapist = await Therapist.findOne({ email });
+
+    res.json({ therapist, verified: true });
   } catch (error) {
     res.json({ error: error.message, verified: false });
   }
 };
 
-const loginUser = async (req, res) => {
+const loginTherapist = async (req, res) => {
   try {
     // 1. Validate request body
     const { email, password } = req.body;
@@ -37,15 +36,15 @@ const loginUser = async (req, res) => {
     }
 
     // 2. Find the user by email
-    const user = await User.findOne({ email });
-    if (!user) {
+    const therapist = await Therapist.findOne({ email });
+    if (!therapist) {
       return res
         .status(401)
         .json({ error: "Invalid email or password", verified: false });
     }
 
     // 3. Compare the passwords
-    const validPassword = await bcrypt.compare(password, user.password);
+    const validPassword = await bcrypt.compare(password, therapist.password);
     if (!validPassword) {
       return res
         .status(401)
@@ -53,20 +52,19 @@ const loginUser = async (req, res) => {
     }
 
     // 5. Send the response back to the client
-    res.json({ user, verified: true });
+    res.json({ therapist, verified: true });
   } catch (error) {
     res.status(500).json({ error: error.message, verified: false });
   }
 };
 
-const getUser = async (req, res) => {
-    //get all users
-    try {
-        const users = await User.find();
-        res.json({ users });
-    } catch (error) {
-        res.json({ error: error.message });
-    }
+const getTherapist = async (req, res) => {
+  try {
+    const therapist = await Therapist.find();
+    res.json({ therapist });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
-module.exports = { registerUser, loginUser, getUser };
+module.exports = { registerTherapist, loginTherapist, getTherapist };
