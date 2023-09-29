@@ -6,7 +6,7 @@ const registerTherapist = async (req, res) => {
   const email = req.body.email;
   const existingTherapist = await Therapist.findOne({ email });
   if (existingTherapist) {
-    return res.json({ error: 'Email is already taken', verified: false });
+    return res.json({ error: "Email is already taken", verified: false });
   }
 
   // Bcrypt password
@@ -20,6 +20,7 @@ const registerTherapist = async (req, res) => {
       password: hashedPassword,
       age: req.body.age,
       expertise: req.body.expertise,
+      gender: req.body.gender,
     });
     console.log("created");
     const therapist = await Therapist.findOne({ email });
@@ -28,7 +29,6 @@ const registerTherapist = async (req, res) => {
     res.json({ error: error.message, verified: false });
   }
 };
-
 
 const loginTherapist = async (req, res) => {
   try {

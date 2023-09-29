@@ -25,7 +25,10 @@ const getComments = async (req, res) => {
 const deleteComment = async (req, res) => {
   const id = req.params.id;
   try {
-    await Comment.findByIdAndDelete(id);
+    const comment = await Comment.findByIdAndDelete(id);
+    if (!comment) {
+      return res.json({ error: "Comment not found", success: false });
+    }
     res.json({ success: true });
   } catch (error) {
     res.json({ error: error.message, success: false });

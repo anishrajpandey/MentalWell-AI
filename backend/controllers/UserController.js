@@ -20,8 +20,7 @@ const registerUser = async (req, res) => {
       email: req.body.email,
       password: hashedPassword,
       age: req.body.age,
-      userType: req.body.userType,
-      emotionalState: req.body.emotionalState,
+      gender: req.body.gender,
     });
     console.log("user created");
 
