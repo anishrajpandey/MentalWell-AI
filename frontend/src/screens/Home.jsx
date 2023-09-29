@@ -20,7 +20,7 @@ const Home = () => {
               rel="noopener"
               className="px-8 py-4 text-lg font-medium text-center text-white bg-indigo-600 hover:bg-indigo-400 rounded-md "
             >
-              Download for Free
+              Connect to specialists{" "}
             </a>
             <a
               href="https://github.com/web3templates/nextly-template/"

@@ -13,9 +13,15 @@ const Navbar = () => {
           <div class="flex md:order-2">
             <button
               type="button"
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0-600-blue-700-blue-800"
+              class=" bg-lignt hover:bg-white focus:ring-4 focus:outline-none  font-medium rounded-xl text-sm px-4 py-2 text-center mr-3 md:mr-0-600-blue-700-blue-800 text-black hover:outline-1"
             >
-              Get started
+              Sign Up{" "}
+            </button>
+            <button
+              type="button"
+              class="text-white bg-primaryBlue hover:bg-secondaryBlue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py-2 text-center mr-3 md:mr-0-600-blue-700-blue-800"
+            >
+              Sign Up{" "}
             </button>
             <button
               data-collapse-toggle="navbar-cta"
