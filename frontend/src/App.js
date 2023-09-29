@@ -10,6 +10,7 @@ import FindTherapist from "./screens/FindTherapist.jsx";
 import SignupUser from "./screens/SignupUser";
 import SignupTherapist from "./screens/SignupTherapist";
 import LoginTherapist from "./screens/LoginTherapist";
+import forum from "./screens/Forum.jsx";
 
 function App() {
   return (
@@ -22,8 +23,8 @@ function App() {
         <Route exact path="logintherapist" element={<LoginTherapist />} />
         <Route exact path="signupuser" element={<SignupUser />} />
         <Route exact path="signuptherapist" element={<SignupTherapist />} />
-        <Route exact path="forum" element={<Forum />} />
         <Route exact path="findtherapist" element={<FindTherapist />} />
+        <Route exact path="forum" element={<Forum />} />
       </Routes>
     </div>
   );
