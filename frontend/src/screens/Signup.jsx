@@ -10,6 +10,14 @@ export default function Signup() {
       alert("Insufficient details");
     }
   }
+  async function handleSignupSpecial() {
+    if (UserData.name && UserData.email && UserData.password) {
+      let res = await fetch("localhost:5000/api/user/register");
+      //todo
+    } else {
+      alert("Insufficient details");
+    }
+  }
   return (
     <div>
       <div className="min-w-screen min-h-screen  flex items-center justify-center px-5 py-5">
@@ -319,13 +327,21 @@ export default function Signup() {
                     </div>
                   </div>
                 </div>
-                <div className="flex -mx-3">
+                <div className="flex flex-col -mx-3">
                   <div className="w-full px-3 mb-5">
                     <button
                       onClick={handleSignup}
                       className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
                     >
-                      REGISTER NOW
+                      Register As User
+                    </button>
+                  </div>
+                  <div className="w-full px-3 mb-5">
+                    <button
+                      onClick={handleSignupSpecial}
+                      className="block w-full max-w-xs mx-auto bg-gray-500 hover:bg-gray-700  text-white rounded-lg px-3 py-3 font-semibold"
+                    >
+                      Register As Specialist
                     </button>
                   </div>
                 </div>
