@@ -18,7 +18,7 @@ const Navbar = () => {
     <div>
       <nav class="bg-white border-gray-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <Link to="/" class="flex items-center">
+          <Link to="/" class="flex items-center ml-0">
             <img src="/logo.png" class="h-16 mr-3" alt="Flowbite Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap"></span>
           </Link>

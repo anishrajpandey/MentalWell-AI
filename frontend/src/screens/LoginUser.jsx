@@ -47,7 +47,7 @@ const LoginUser = () => {
       >
         <div className="w-full h-100">
           <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12">
-            Log in to your account
+            Welcome, User Log in to your account
           </h1>
 
           <form className="mt-6" action="#" method="POST">
