@@ -6,7 +6,7 @@ export default function SignupUser() {
     if (UserData.name && UserData.email && UserData.password) {
       console.log(UserData);
       let res = await fetch("/api/user/register", {
-        body: JSON.stringify(UserData),
+        body: UserData,
         method: "POST",
       });
       let resjson = await res.json();
