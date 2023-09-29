@@ -3,8 +3,7 @@ const bcrypt = require("bcryptjs");
 
 // register user controller
 const registerUser = async (req, res) => {
-  console.log("first");
-
+  console.log(req.body);
   const email = req.body.email;
   const existingUser = await User.findOne({ email });
   if (existingUser) {
