@@ -1,6 +1,11 @@
 import React from "react";
 
+import { useNavigate } from "react-router-dom";
+
+import { Link } from "react-router-dom";
+
 const Login = () => {
+  const navigate = useNavigate();
   return (
     <section className="flex flex-col md:flex-row h-screen items-center">
       <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
@@ -108,15 +113,15 @@ const Login = () => {
             </div>
           </button>
 
-          <p className="mt-8">
+          <div className="mt-8">
             Need an account?{" "}
-            <a
-              href="#"
+            <button
+              onClick={() => navigate("/signup")}
               className="text-blue-500 hover:text-blue-700 font-semibold"
             >
               Create an account
-            </a>
-          </p>
+            </button>
+          </div>
         </div>
       </div>
     </section>
