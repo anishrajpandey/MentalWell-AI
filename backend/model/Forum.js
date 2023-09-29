@@ -8,7 +8,7 @@ const forumSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  userId: {
+  userID: {
     type: mongoose.Schema.ObjectId,
     required: true,
   },
