@@ -18,11 +18,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route exact path="signupuser" element={<SignupUser />} />
         <Route exact path="loginuser" element={<LoginUser />} />
         <Route exact path="logintherapist" element={<LoginTherapist />} />
+        <Route exact path="signupuser" element={<SignupUser />} />
         <Route exact path="signuptherapist" element={<SignupTherapist />} />
-        <Route exact path="loginuser" element={<LoginUser />} />
         <Route exact path="forum" element={<Forum />} />
         <Route exact path="findtherapist" element={<FindTherapist />} />
       </Routes>
