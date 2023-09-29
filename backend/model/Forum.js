@@ -7,6 +7,7 @@ const forumSchema = new mongoose.Schema({
   },
   fakeName:{
     type: String,
+    required: false,
     default: fakeName,
   },
   content: {
