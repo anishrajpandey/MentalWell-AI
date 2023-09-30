@@ -5,7 +5,10 @@ import Footer from "../components/Footer";
 const Home = () => {
   return (
     <main className="flex flex-wrap min-h-screen justify-center items-center m-16 ">
-      <div className="flex items-center w-full lg:w-1/2">
+      <div
+        className="flex items-center w-full lg:w-1/2"
+        style={{ height: "80vh", margin: "auto" }}
+      >
         <div className="max-w-2xl mb-8">
           <h1 className="text-4xl px-12 font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight ">
             Your Ally for Mental Well being
@@ -19,15 +22,15 @@ const Home = () => {
             <a
               href="https://web3templates.com/templates/nextly-landing-page-template-for-startups"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               className="px-8 py-4 text-lg font-medium text-center text-white bg-indigo-600 hover:bg-indigo-400 rounded-md "
             >
               Connect to specialists{" "}
             </a>
             <a
-              href="https://github.com/web3templates/nextly-template/"
+              href="https://github.com/anishrajpandey/MentalWell-AI"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               className="flex items-center space-x-2 text-gray-500 -400"
             >
               <svg
@@ -60,8 +63,12 @@ const Home = () => {
           />
         </div>
       </div>
-      <AddedHome />
-      <Footer />
+      <div>
+        <AddedHome />
+      </div>
+      <div>
+        <Footer />
+      </div>
     </main>
   );
 };
