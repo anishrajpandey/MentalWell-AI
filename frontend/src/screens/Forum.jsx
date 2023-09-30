@@ -49,7 +49,7 @@ export default function Forum() {
           Your Forums
         </h1>
         <ol type="1">
-          {MyForums.map(({ title,_id ,fakeName}) => (
+          {MyForums.map(({ title, _id, fakeName }) => (
             <li className="h-20 flex items-center shadow-lg ">
               {" "}
               <p>{fakeName}</p>
