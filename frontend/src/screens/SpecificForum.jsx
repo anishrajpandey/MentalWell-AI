@@ -110,9 +110,9 @@ const SpecificForum = () => {
         <CircularProgress color="inherit" />
       </Backdrop>
       {
-        <main className="grid">
+        <main className="grid " style={{width:"800px",margin:"auto"}}>
           <hr className="bg-tertiary text-tertiary " />
-          <h2 className="px-4 text-md text-left font-semibold text-tertiary flex justify-between">
+          <h2 className="px-4 text-md text-left font-semibold text-tertiary flex justify-between"  >
             <span>Forum opened by {Forum.forum?.fakeName}</span>
             <span>{Forum.forum?.created_at.split("T")[0]}</span>
           </h2>
