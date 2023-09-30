@@ -3,6 +3,11 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
+import getUserData from "../utils/getUserData";
 const SpecificForum = () => {
   const [Forum, setForum] = useState({});
   const [UpdatedForum, setUpdatedForum] = useState({});
@@ -22,14 +27,27 @@ const SpecificForum = () => {
     boxShadow: 24,
     p: 4,
   };
+  async function handleDelete() {
+    let response = window.confirm("Sure to delete");
+    console.log(response);
+    if (response) {
+      let res = await axios.delete(
+        `http://localhost:5000/api/forum/deleteForum/${
+          window.location.pathname.split("/")[2]
+        }`
+      );
+      window.location.reload();
+    }
+  }
   async function handleUpdate() {
+    setOpen(true);
     let res = await axios.put(
       `http://localhost:5000/api/forum/updateForum/${
         window.location.pathname.split("/")[2]
       }`,
       UpdatedForum
     );
-    console.log(res.data);
+    setOpen(false);
   }
 
   async function getForum() {
@@ -38,12 +56,20 @@ const SpecificForum = () => {
       `http://localhost:5000/api/forum/getForum/${forumID}`
     );
     setForum((prev) => ({ ...prev, ...res.data }));
+    console.log(res.data);
   }
   useEffect(() => {
     getForum();
   }, []);
   return (
     <article>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={false}
+        onClick={handleClose}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       {
         <main className="grid">
           <hr className="bg-tertiary text-tertiary " />
@@ -53,9 +79,17 @@ const SpecificForum = () => {
           </h2>
           <h2 className="px-4 text-2xl text-left flex justify-between font-bold">
             {Forum?.forum?.title}{" "}
-            <button className="text-xl" onClick={handleOpen}>
-              ✏️{" "}
-            </button>
+            {Forum.forum?.userID === getUserData()._id && (
+              <div className="flex gap-2 items-center">
+                <button className="text-xl" onClick={handleOpen}>
+                  ✏️{" "}
+                </button>
+                <DeleteIcon
+                  onClick={handleDelete}
+                  className="text-red-600 cursor-pointer"
+                />
+              </div>
+            )}
           </h2>
           <h2 className="px-4 text-xl text-left font-medium">
             {Forum?.forum?.content}
