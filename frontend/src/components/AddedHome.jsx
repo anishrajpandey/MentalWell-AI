@@ -10,7 +10,7 @@ const AddedHome = () => {
               WE SUPPORT YOUR JOURNEY TO A&nbsp;
               <span className="font-bold text-orange-700">HEALTHIER MIND</span>
             </span>
-          </h2>
+          </h2> 
           <div className="flex flex-col md:flex-row items-center">
             <p
               className="text-black w-full text-base md:text-lg ml-4 md:ml-8"
