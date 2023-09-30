@@ -3,24 +3,23 @@ import React from "react";
 const AddedHome = () => {
   return (
     <section className="flex flex-col my-16">
-      <div className="item flex flex-col md:flex-row">
+      <div className=" my-8 item flex flex-col md:flex-row">
         <div className="leftSide flex-1 pl-2 md:pl-20 flex flex-col justify-center">
           <h2 className="title p-4 font-semibold flex gap-2 items-center">
             <span className="text-xl md:text-3xl">
-              WE HELP YOU BUILD A&nbsp;
-              <span className="font-bold text-orange-700">
-                TECHNICAL ECOSYSTEM
-              </span>
+              WE SUPPORT YOUR JOURNEY TO A&nbsp;
+              <span className="font-bold text-orange-700">HEALTHIER MIND</span>
             </span>
           </h2>
           <div className="flex flex-col md:flex-row items-center">
             <p className="text-black w-full text-base md:text-lg ml-4 md:ml-8">
-              Do you want to build a successful technology business? If so, you
-              need to build a strong technical ecosystem around your company. We
-              are a team of experienced ecosystem builders who can help you
-              build a successful technical ecosystem for your business. We have
-              a proven track record of success, and we are passionate about
-              helping businesses grow and succeed.
+              Are you looking to enhance your mental well-being? If so, you've
+              come to the right place. We are a team of dedicated professionals
+              who are committed to helping you achieve better mental health. Our
+              expertise lies in providing the support and tools you need to
+              navigate your mental health journey successfully. We have a proven
+              track record of making a positive impact, and we are passionate
+              about improving lives through mental well-being.
             </p>
           </div>
         </div>
@@ -33,22 +32,22 @@ const AddedHome = () => {
         </div>
       </div>
 
-      <div className="w-full mt-12 flex flex-col md:flex-row-reverse">
+      <div className="my-8 w-full mt-12 flex flex-col md:flex-row-reverse">
         <div className="leftSide flex-1 pl-2 md:pl-20 flex flex-col justify-center">
           <h2 className="title p-4 font-semibold flex gap-2 items-center">
             <span className="text-xl md:text-3xl">
-              WE MAKE YOUR BUSINESS&nbsp;
-              <span className="font-bold text-orange-700">STAND OUT</span>
+              WE HELP YOU FIND&nbsp;
+              <span className="font-bold text-orange-700">MENTAL WELLNESS</span>
             </span>
           </h2>
           <div className="px-5 mt-8 md:mt-1 md:px-12">
             <p className="text-black text-base md:text-lg">
-              By working with us, you can be sure that your business will stand
-              out from the competition and achieve its full potential. We
-              understand the challenges that businesses face, and we are
-              committed to providing you with the solutions you need to succeed.
-              If you are ready to take your business to the next level, contact
-              us today to learn more about it.
+              Our advanced AI technology is designed to guide you towards mental
+              wellness. We understand the challenges individuals face in
+              maintaining mental health, and we are dedicated to providing you
+              with the tools and support you need to achieve it. If you're ready
+              to embark on a journey towards better mental well-being, get in
+              touch with us today to learn more.
             </p>
           </div>
         </div>
@@ -56,27 +55,28 @@ const AddedHome = () => {
           <img
             className="w-full h-full object-contain"
             src="/assets/2.svg"
-            alt="dfdsfddsfds"
+            alt="Illustration of Mental Wellness"
           />
         </div>
       </div>
 
-      <div className="item w-full flex flex-col md:flex-row">
+      <div className="my-8 item w-full flex flex-col md:flex-row">
         <div className="leftSide flex-1 pl-2 md:pl-20 flex flex-col justify-center">
           <h2 className="title p-4 font-semibold flex gap-2 items-center">
             <span className="text-xl md:text-3xl">
-              WE OFFER YOU THE&nbsp;
-              <span className="font-bold text-orange-700">FREEDOM</span>&nbsp;OF
-              FULL
-              <span className="font-bold text-orange-700"> CUSTOMIZATION</span>
+              WE PROVIDE YOU WITH&nbsp;
+              <span className="font-bold text-orange-700">
+                PERSONALIZED SOLUTIONS
+              </span>
             </span>
           </h2>
           <div className="px-5 mt-8 md:mt-1 md:px-12">
             <p className="text-black text-base md:text-lg">
-              If you are looking for a way to stand out from the competition,
-              then custom made software is the answer. Contact us today to learn
-              more about how we can help you create custom made software that
-              will give you a competitive advantage.
+              Your mental health journey is unique, and our AI technology
+              understands that. We offer personalized solutions that cater to
+              your specific needs, ensuring you receive the support you deserve.
+              If you're seeking a customized approach to mental wellness, reach
+              out to us today to discover how we can assist you on your journey.
             </p>
           </div>
         </div>
@@ -84,7 +84,7 @@ const AddedHome = () => {
           <img
             className="w-full h-full object-conain"
             src="/assets/3.svg"
-            alt="dfdsfddsfds"
+            alt="Illustration of Personalized Solutions"
           />
         </div>
       </div>
