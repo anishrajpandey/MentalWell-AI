@@ -12,7 +12,10 @@ const AddedHome = () => {
             </span>
           </h2>
           <div className="flex flex-col md:flex-row items-center">
-            <p className="text-black w-full text-base md:text-lg ml-4 md:ml-8">
+            <p
+              className="text-black w-full text-base md:text-lg ml-4 md:ml-8"
+              style={{ textAlign: "justify" }}
+            >
               Are you looking to enhance your mental well-being? If so, you've
               come to the right place. We are a team of dedicated professionals
               who are committed to helping you achieve better mental health. Our
@@ -41,7 +44,10 @@ const AddedHome = () => {
             </span>
           </h2>
           <div className="px-5 mt-8 md:mt-1 md:px-12">
-            <p className="text-black text-base md:text-lg">
+            <p
+              className="text-black text-base md:text-lg"
+              style={{ textAlign: "justify" }}
+            >
               Our advanced AI technology is designed to guide you towards mental
               wellness. We understand the challenges individuals face in
               maintaining mental health, and we are dedicated to providing you
@@ -71,7 +77,10 @@ const AddedHome = () => {
             </span>
           </h2>
           <div className="px-5 mt-8 md:mt-1 md:px-12">
-            <p className="text-black text-base md:text-lg">
+            <p
+              className="text-black text-base md:text-lg"
+              style={{ textAlign: "justify" }}
+            >
               Your mental health journey is unique, and our AI technology
               understands that. We offer personalized solutions that cater to
               your specific needs, ensuring you receive the support you deserve.
