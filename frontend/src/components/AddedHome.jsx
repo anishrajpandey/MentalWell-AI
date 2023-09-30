@@ -9,9 +9,9 @@ const AddedHome = () => {
             <h2 className="title p-4 font-semibold flex gap-2 items-center ">
               <img
                 className="inline-block"
-                width="40"
-                height="40"
-                src="/assets/starIcon.png"
+                width="500"
+                height="500"
+                src="./assets/firstH.jpg"
                 alt="star-half-empty"
               />
               <span className=" text-xl md:text-3xl ">

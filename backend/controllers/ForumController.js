@@ -35,12 +35,13 @@ const getForum = async (req, res) => {
 
 const updateForum = async (req, res) => {
   const id = req.params.id;
+  const forum = await Forum.findById(id);
   try {
     const forum = await Forum.findByIdAndUpdate(
       id,
       {
-        title: req.body.title,
-        content: req.body.content,
+        title: req.body.title || forum.title,
+        content: req.body.content || forum.content,
       },
       { new: true }
     );
