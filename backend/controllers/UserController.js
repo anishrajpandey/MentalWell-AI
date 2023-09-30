@@ -74,5 +74,16 @@ const getUser = async (req, res) => {
     res.json({ error: error.message });
   }
 };
+const setEmotionState = async (req, res) => {
+  const { _id, emotionState } = req.body;
+  try {
+    const user = await User.findOne({ _id });
+    user.emotionalState = emotionState;
+    await user.save();
+    res.json({ success: true });
+  } catch (error) {
+    res.json({ error: error.message });
+  }
+};
 
-module.exports = { registerUser, loginUser, getUser };
+module.exports = { registerUser, loginUser, getUser , setEmotionState };

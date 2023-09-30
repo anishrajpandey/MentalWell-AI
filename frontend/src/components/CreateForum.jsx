@@ -27,6 +27,8 @@ const CreateForum = () => {
           progress: undefined,
           theme: "light",
         });
+        //refresh
+        window.location.reload();
       } else {
         toast.error("not added", {
           position: "bottom-left",
@@ -38,6 +40,7 @@ const CreateForum = () => {
           progress: undefined,
           theme: "light",
         });
+        window.location.reload();
       }
     } catch (e) {
       toast.error(e.message, {
@@ -50,6 +53,7 @@ const CreateForum = () => {
         progress: undefined,
         theme: "light",
       });
+      window.location.reload();
     }
   }
 

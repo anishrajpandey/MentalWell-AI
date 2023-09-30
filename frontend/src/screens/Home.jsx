@@ -1,6 +1,7 @@
 import React from "react";
 import AddedHome from "../components/AddedHome";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -19,14 +20,14 @@ const Home = () => {
           </p>
 
           <div className="flex flex-col px-12 items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
-            <a
-              href="https://web3templates.com/templates/nextly-landing-page-template-for-startups"
+            <Link
+              to="/"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 text-lg font-medium text-center text-white bg-indigo-600 hover:bg-indigo-400 rounded-md "
             >
               Connect to specialists{" "}
-            </a>
+            </Link>
             <a
               href="https://github.com/anishrajpandey/MentalWell-AI"
               target="_blank"

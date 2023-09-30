@@ -30,7 +30,8 @@ const userSchema = new mongoose.Schema({
   emotionalState: {
     type: Number,
     required: false,
-    default: 5,
+    default:0
+    
   },
   userType: {
     type: String,

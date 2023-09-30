@@ -16,7 +16,7 @@ export default function CheckboxList() {
       (item1, item2) => (item1.emotionalState - item2.emotionalState) * -1
     );
 
-    setUsers((prev) => [...prev, ...sorted]);
+    setUsers((prev) => [ ...sorted]);
   }
   useEffect(() => {
     getAllUsers();
@@ -52,9 +52,9 @@ export default function CheckboxList() {
               key={value._id}
               secondaryAction={
                 <IconButton edge="end" aria-label="comments">
-                  {value.emotionalState > 5 && <div>😄</div>}
-                  {value.emotionalState == 5 && <div>😐</div>}
-                  {value.emotionalState < 5 && <div>😟</div>}
+                  {value.emotionalState > 5 && <div className="text-5xl">😄</div>}
+                  {value.emotionalState == 5 && <div className="text-5xl">😐</div>}
+                  {value.emotionalState < 5 && <div className="text-5xl">😟</div>}
                 </IconButton>
               }
               disablePadding
