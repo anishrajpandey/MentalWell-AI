@@ -3,7 +3,7 @@ import AddedHome from "../components/AddedHome";
 
 const Home = () => {
   return (
-    <main className="flex flex-wrap min-h-screen justify-center items-center ">
+    <main className="flex flex-wrap min-h-screen justify-center items-center m-16 ">
       <div className="flex items-center w-full lg:w-1/2">
         <div className="max-w-2xl mb-8">
           <h1 className="text-4xl px-12 font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight ">
