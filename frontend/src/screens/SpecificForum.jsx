@@ -77,7 +77,7 @@ const SpecificForum = () => {
             <span>Forum opened by {Forum.forum?.fakeName}</span>
             <span>{Forum.forum?.created_at.split("T")[0]}</span>
           </h2>
-          <h2 className="px-4 text-2xl text-left flex justify-between font-bold">
+          <h2 className="px-4 text-4xl text-center flex justify-between font-bold">
             {Forum?.forum?.title}{" "}
             {Forum.forum?.userID === getUserData()._id && (
               <div className="flex gap-2 items-center">
@@ -149,6 +149,27 @@ const SpecificForum = () => {
           </button>
         </Box>
       </Modal>
+      <hr className="mt-12" />
+      <hr />
+      <hr />
+      <hr />
+      <h2 className="flex justify-center text-5xl font-extrabold underline pt-4 text-red-800">
+        Comments
+      </h2>
+      <p className="text-md uppercase text-center p-3 font-semibold">
+        leave a comment!!
+      </p>
+      <div className="w-full flex justify-center">
+        <textarea
+          name="comment"
+          id="comment"
+          cols={"90"}
+          rows={"10"}
+          className="border mx-auto font-medium text-lg p-4"
+        />
+      </div>
+
+      <article></article>
     </article>
   );
 };
