@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import CreateForum from "../components/CreateForum";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import getUserData from "../utils/getUserData";
 
@@ -48,15 +49,16 @@ export default function Forum() {
           Your Forums
         </h1>
         <ol type="1">
-          {MyForums.map(({ title }) => (
+          {MyForums.map(({ title,_id ,fakeName}) => (
             <li className="h-20 flex items-center shadow-lg ">
               {" "}
-              <a
-                href="#"
+              <p>{fakeName}</p>
+              <Link
+                to={`/forum/${_id}`}
                 className="text-xl px-12 py-4 inline-block text-purple-600 "
               >
                 {title}
-              </a>
+              </Link>
             </li>
           ))}
         </ol>
@@ -69,12 +71,13 @@ export default function Forum() {
           {OtherForums.map(({ title, fakeName }) => (
             <li className="h-20 flex items-center shadow-lg">
               {" "}
-              <a
-                href="#"
+              <p>{fakeName}</p>
+              <Link
+                to="#"
                 className="text-xl px-12 py-2 inline-block text-purple-600 "
               >
                 {title}
-              </a>
+              </Link>
             </li>
           ))}
         </ol>
