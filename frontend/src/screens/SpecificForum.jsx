@@ -6,7 +6,6 @@ import Modal from "@mui/material/Modal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import Button from "@mui/material/Button";
 import getUserData from "../utils/getUserData";
 const SpecificForum = () => {
   const [Forum, setForum] = useState({});
@@ -28,7 +27,7 @@ const SpecificForum = () => {
     p: 4,
   };
   async function handleDelete() {
-    let response = window.confirm("Sure to delete");
+    let response = window.confirm("Sure to delete??");
     console.log(response);
     if (response) {
       let res = await axios.delete(
