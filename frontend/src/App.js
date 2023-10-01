@@ -13,6 +13,7 @@ import LoginTherapist from "./screens/LoginTherapist";
 import checkAuthentication from "./utils/checkAuthentication";
 import FindPatients from "./screens/FindPatients";
 import SpecificForum from "./screens/SpecificForum";
+import SurveyForm from "./screens/Survey";
 
 function App() {
   useEffect(() => {
@@ -32,6 +33,7 @@ function App() {
         <Route exact path="forum" element={<Forum />} />
         <Route exact path="getUsers" element={<FindPatients />} />
         <Route exact path="forum/:id" element={<SpecificForum />} />
+        <Route exact path="survey" element={<SurveyForm />} />
       </Routes>
     </div>
   );

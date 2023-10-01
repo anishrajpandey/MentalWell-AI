@@ -6,50 +6,63 @@ import "react-toastify/dist/ReactToastify.css";
 export default function SignupUser() {
   const [UserData, setUserData] = useState({});
   async function handleSignup() {
-    if (UserData.name && UserData.email && UserData.password) {
-      console.log(UserData);
-      let res = await axios.post("http://localhost:5000/api/user/register", {
-        ...UserData,
-      });
-      console.log(res.data);
-      if (res.data.verified) {
-        localStorage.setItem("UserData", JSON.stringify(res.data));
-        toast.success(
-          "🦄 Successfully created an account. Welcome ",
-          res.data.name,
-          {
+    try {
+      if (UserData.name && UserData.email && UserData.password) {
+        console.log(UserData);
+        let res = await axios.post("http://localhost:5000/api/user/register", {
+          ...UserData,
+        });
+        console.log(res.data);
+        if (res.data.verified) {
+          localStorage.setItem("UserData", JSON.stringify(res.data));
+          toast.success(
+            "🦄 Successfully created an account. Welcome " + res.data.name,  // Updated this line for string concatenation
+            {
+              position: "bottom-left",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            }
+          );
+          setTimeout(() => {
+            window.location = "/survey";
+          }, 2000);
+        } else {
+          localStorage.setItem("UserData", JSON.stringify(res.data));
+          toast.error(res.data.error, {
             position: "bottom-left",
-            autoClose: 1000,
+            autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
             theme: "light",
-          }
-        );
-        setTimeout(() => {
-          window.location = "/";
-        }, 2000);
+          });
+        }
+        //todo
       } else {
-        localStorage.setItem("UserData", JSON.stringify(res.data));
-        toast.error(res.data.error, {
-          position: "bottom-left",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        alert("Insufficient details");
       }
-
-      //todo
-    } else {
-      alert("Insufficient details");
+    } catch (error) {
+      console.error("Signup error:", error);
+      toast.error("An error occurred during signup. Please try again.", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   }
+  
 
   return (
     <>

@@ -1,18 +1,65 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+// import Button from "@mui/material/Button";
 import getUserData from "../utils/getUserData";
+
 const SpecificForum = () => {
   const [Forum, setForum] = useState({});
   const [UpdatedForum, setUpdatedForum] = useState({});
+  const [filteredComments, setFilteredComments] = useState([]);
+  const Comment = useRef();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
+
   const handleClose = () => setOpen(false);
+  const handleChnage = async () => {
+    try {
+      const content = Comment.current.value;
+      const userID = getUserData()._id;
+      const forumID = window.location.pathname.split("/")[2];
+
+      let response = await axios.post(
+        "http://localhost:5000/api/comment/addComment",
+        {
+          content,
+          userID,
+          forumID,
+        }
+      );
+      window.location.reload();
+    } catch (e) {
+      console.log(e.message);
+    }
+
+    // console.log(content, userID, forumID, response.data);
+  };
+  useEffect(() => {
+    async function fetchComments() {
+      try {
+        let res = await axios.get(
+          `http://localhost:5000/api/comment/getComments`
+        );
+        let comments = res.data.comments;
+        let forumID = window.location.pathname.split("/")[2];
+        let filtered = comments.filter(
+          ({ forumID: forumID2 }) => forumID2 === forumID
+        );
+        setFilteredComments(filtered);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+      }
+    }
+
+    fetchComments();
+  }, []);
+  //call function only one time
 
   const style = {
     position: "absolute",
@@ -27,35 +74,46 @@ const SpecificForum = () => {
     p: 4,
   };
   async function handleDelete() {
-    let response = window.confirm("Sure to delete??");
-    console.log(response);
-    if (response) {
-      let res = await axios.delete(
-        `http://localhost:5000/api/forum/deleteForum/${
-          window.location.pathname.split("/")[2]
-        }`
-      );
-      window.location.reload();
+    try {
+      let response = window.confirm("Sure to delete");
+      if (response) {
+        let res = await axios.delete(
+          `http://localhost:5000/api/forum/deleteForum/${
+            window.location.pathname.split("/")[2]
+          }`
+        );
+        window.location.reload();
+      }
+    } catch (e) {
+      console.log(e.message);
     }
   }
+
   async function handleUpdate() {
     setOpen(true);
-    let res = await axios.put(
-      `http://localhost:5000/api/forum/updateForum/${
-        window.location.pathname.split("/")[2]
-      }`,
-      UpdatedForum
-    );
-    setOpen(false);
+    try {
+      let res = await axios.put(
+        `http://localhost:5000/api/forum/updateForum/${
+          window.location.pathname.split("/")[2]
+        }`,
+        UpdatedForum
+      );
+      setOpen(false);
+    } catch (e) {
+      console.log(e.message);
+    }
   }
 
   async function getForum() {
-    let forumID = window.location.pathname.split("/")[2];
-    let res = await axios.get(
-      `http://localhost:5000/api/forum/getForum/${forumID}`
-    );
-    setForum((prev) => ({ ...prev, ...res.data }));
-    console.log(res.data);
+    try {
+      let forumID = window.location.pathname.split("/")[2];
+      let res = await axios.get(
+        `http://localhost:5000/api/forum/getForum/${forumID}`
+      );
+      setForum((prev) => ({ ...prev, ...res.data }));
+    } catch (e) {
+      console.log(e.message);
+    }
   }
   useEffect(() => {
     getForum();
@@ -70,7 +128,7 @@ const SpecificForum = () => {
         <CircularProgress color="inherit" />
       </Backdrop>
       {
-        <main className="grid">
+        <main className="grid " style={{ width: "800px", margin: "auto" }}>
           <hr className="bg-tertiary text-tertiary " />
           <h2 className="px-4 text-md text-left font-semibold text-tertiary flex justify-between">
             <span>Forum opened by {Forum.forum?.fakeName}</span>
@@ -158,17 +216,35 @@ const SpecificForum = () => {
       <p className="text-md uppercase text-center p-3 font-semibold">
         leave a comment!!
       </p>
-      <div className="w-full flex justify-center">
+      <div className="w-full flex flex-col  gap-10 justify-center items-center">
         <textarea
           name="comment"
+          ref={Comment}
           id="comment"
           cols={"90"}
-          rows={"10"}
+          rows={"5"}
           className="border mx-auto font-medium text-lg p-4"
         />
+        <button
+          onClick={handleChnage}
+          className="bg-red-400 w-fit p-4 rounded-lg"
+        >
+          Submit a Comment
+        </button>
       </div>
 
-      <article></article>
+      <article className="mx-auto   mt-[100px] gap-4 flex flex-col items-center justify-center w-screen">
+        {filteredComments.map((comment, index) => (
+          <p
+            key={index}
+            className="border-2 p-4 rounded-sm w-1/4"
+            style={{ height: "50px" }}
+          >
+            {comment.content}{" "}
+            {/* Adjust this if the comment's text is stored differently */}
+          </p>
+        ))}
+      </article>
     </article>
   );
 };
