@@ -20,29 +20,37 @@ const SpecificForum = () => {
 
   const handleClose = () => setOpen(false);
   const handleChnage = async () => {
-    const content = Comment.current.value;
-    const userID = getUserData()._id;
-    const forumID = window.location.pathname.split("/")[2];
+    try {
+      const content = Comment.current.value;
+      const userID = getUserData()._id;
+      const forumID = window.location.pathname.split("/")[2];
 
-    let response = await axios.post(
-      "http://localhost:5000/api/comment/addComment",
-      {
-        content,
-        userID,
-        forumID,
-      }
-    );
-    window.location.reload();
+      let response = await axios.post(
+        "http://localhost:5000/api/comment/addComment",
+        {
+          content,
+          userID,
+          forumID,
+        }
+      );
+      window.location.reload();
+    } catch (e) {
+      console.log(e.message);
+    }
+
     // console.log(content, userID, forumID, response.data);
   };
   useEffect(() => {
-    
     async function fetchComments() {
       try {
-        let res = await axios.get(`http://localhost:5000/api/comment/getComments`);
+        let res = await axios.get(
+          `http://localhost:5000/api/comment/getComments`
+        );
         let comments = res.data.comments;
         let forumID = window.location.pathname.split("/")[2];
-        let filtered = comments.filter(({ forumID: forumID2 }) => forumID2 === forumID);
+        let filtered = comments.filter(
+          ({ forumID: forumID2 }) => forumID2 === forumID
+        );
         setFilteredComments(filtered);
       } catch (error) {
         console.error("Error fetching comments:", error);
@@ -66,36 +74,46 @@ const SpecificForum = () => {
     p: 4,
   };
   async function handleDelete() {
-    let response = window.confirm("Sure to delete");
-    console.log(response);
-    if (response) {
-      let res = await axios.delete(
-        `http://localhost:5000/api/forum/deleteForum/${
-          window.location.pathname.split("/")[2]
-        }`
-      );
-      window.location.reload();
+    try {
+      let response = window.confirm("Sure to delete");
+      if (response) {
+        let res = await axios.delete(
+          `http://localhost:5000/api/forum/deleteForum/${
+            window.location.pathname.split("/")[2]
+          }`
+        );
+        window.location.reload();
+      }
+    } catch (e) {
+      console.log(e.message);
     }
   }
 
   async function handleUpdate() {
     setOpen(true);
-    let res = await axios.put(
-      `http://localhost:5000/api/forum/updateForum/${
-        window.location.pathname.split("/")[2]
-      }`,
-      UpdatedForum
-    );
-    setOpen(false);
+    try {
+      let res = await axios.put(
+        `http://localhost:5000/api/forum/updateForum/${
+          window.location.pathname.split("/")[2]
+        }`,
+        UpdatedForum
+      );
+      setOpen(false);
+    } catch (e) {
+      console.log(e.message);
+    }
   }
 
   async function getForum() {
-    let forumID = window.location.pathname.split("/")[2];
-    let res = await axios.get(
-      `http://localhost:5000/api/forum/getForum/${forumID}`
-    );
-    setForum((prev) => ({ ...prev, ...res.data }));
-    console.log(res.data);
+    try {
+      let forumID = window.location.pathname.split("/")[2];
+      let res = await axios.get(
+        `http://localhost:5000/api/forum/getForum/${forumID}`
+      );
+      setForum((prev) => ({ ...prev, ...res.data }));
+    } catch (e) {
+      console.log(e.message);
+    }
   }
   useEffect(() => {
     getForum();
@@ -110,9 +128,9 @@ const SpecificForum = () => {
         <CircularProgress color="inherit" />
       </Backdrop>
       {
-        <main className="grid " style={{width:"800px",margin:"auto"}}>
+        <main className="grid " style={{ width: "800px", margin: "auto" }}>
           <hr className="bg-tertiary text-tertiary " />
-          <h2 className="px-4 text-md text-left font-semibold text-tertiary flex justify-between"  >
+          <h2 className="px-4 text-md text-left font-semibold text-tertiary flex justify-between">
             <span>Forum opened by {Forum.forum?.fakeName}</span>
             <span>{Forum.forum?.created_at.split("T")[0]}</span>
           </h2>
@@ -216,12 +234,16 @@ const SpecificForum = () => {
       </div>
 
       <article className="mx-auto   mt-[100px] gap-4 flex flex-col items-center justify-center w-screen">
-
-      {filteredComments.map((comment, index) => (
-        <p key={index} className="border-2 p-4 rounded-sm w-1/4" style={{ height: "50px" }}>
-          {comment.content} {/* Adjust this if the comment's text is stored differently */}
-        </p>
-      ))}
+        {filteredComments.map((comment, index) => (
+          <p
+            key={index}
+            className="border-2 p-4 rounded-sm w-1/4"
+            style={{ height: "50px" }}
+          >
+            {comment.content}{" "}
+            {/* Adjust this if the comment's text is stored differently */}
+          </p>
+        ))}
       </article>
     </article>
   );
