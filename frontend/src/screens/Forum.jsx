@@ -5,7 +5,8 @@ import axios from "axios";
 import getUserData from "../utils/getUserData";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
-
+import CheckAuthentication from "./../utils/checkAuthentication";
+import checkAuthentication from "./../utils/checkAuthentication";
 export default function Forum() {
   const [MyForums, setMyForums] = useState([]);
   const [OtherForums, setOtherForums] = useState([]);
@@ -44,7 +45,10 @@ export default function Forum() {
         variant="contained"
         className="bg-primaryBlue w-16 h-16  grid items-center fixed bottom-6 text-4xl right-16 rounded-full hover:bg-secondaryBlue "
         onClick={() => {
-          setShowCreateForum(!ShowCreateForum);
+          // console.log(checkAuthenticationzzz)
+          checkAuthentication()
+            ? setShowCreateForum(!ShowCreateForum)
+            : (window.location.href = "/loginuser");
         }}
       >
         +
@@ -69,6 +73,11 @@ export default function Forum() {
               </Stack>{" "}
             </li>
           ))}
+          {MyForums.length === 0 && (
+            <h1 className="text-4xl  text-red-400 m-4  w-full text-center">
+              No forums created by you
+            </h1>
+          )}
         </ol>
       </div>
       <div>

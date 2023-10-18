@@ -13,7 +13,7 @@ const registerUser = async (req, res) => {
   //bcrypt password
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
-  console.log("user creating");
+  // console.log("user creating");
   try {
     await User.create({
       name: req.body.name,
@@ -22,7 +22,7 @@ const registerUser = async (req, res) => {
       age: req.body.age,
       gender: req.body.gender,
     });
-    console.log("user created");
+    // console.log("user created");
 
     const user = await User.findOne({ email });
 

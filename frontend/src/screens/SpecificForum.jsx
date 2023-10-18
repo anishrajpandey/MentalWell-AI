@@ -134,7 +134,7 @@ const SpecificForum = () => {
             <span>Forum opened by {Forum.forum?.fakeName}</span>
             <span>{Forum.forum?.created_at.split("T")[0]}</span>
           </h2>
-          <h2 className="px-4 text-4xl text-center flex justify-between font-bold">
+          <h2 className="px-4 text-4xl text-center flex justify-between my-4 font-bold">
             {Forum?.forum?.title}{" "}
             {Forum.forum?.userID === getUserData()._id && (
               <div className="flex gap-2 items-center">
@@ -210,9 +210,7 @@ const SpecificForum = () => {
       <hr />
       <hr />
       <hr />
-      <h2 className="flex justify-center text-5xl font-extrabold underline pt-4 text-red-800">
-        Comments
-      </h2>
+   
       <p className="text-md uppercase text-center p-3 font-semibold">
         leave a comment!!
       </p>
@@ -227,18 +225,21 @@ const SpecificForum = () => {
         />
         <button
           onClick={handleChnage}
-          className="bg-red-400 w-fit p-4 rounded-lg"
+          className="bg-primaryBlue w-fit p-4 rounded-lg"
         >
           Submit a Comment
         </button>
       </div>
-
+              
       <article className="mx-auto   mt-[100px] gap-4 flex flex-col items-center justify-center w-screen">
+      <h2 className="flex justify-center text-3xl font-bold   pt-4 text-primaryBlue">
+        Comments
+      </h2>
         {filteredComments.map((comment, index) => (
           <p
             key={index}
-            className="border-2 p-4 rounded-sm w-1/4"
-            style={{ height: "50px" }}
+            className="border-2  p-4 rounded-sm  w-1/4"
+            style={{ height:"fit-content",marginBottom:"50px" }}
           >
             {comment.content}{" "}
             {/* Adjust this if the comment's text is stored differently */}
